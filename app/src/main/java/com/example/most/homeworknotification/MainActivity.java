@@ -19,9 +19,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TimePicker;
-import android.widget.Toast;
 
-import java.text.DateFormatSymbols;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -30,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements
         DatePickerDialog.OnDateSetListener, TimePickerDialog.OnTimeSetListener
         {
 
-            final String[] sub = {""};
+            String sub = "";
             Button Create;
             int day , month , year , hour , minute;
             int dayFinal , mountFinal , yearFinal , hourFinal, minuteFinal;
@@ -67,9 +65,7 @@ public class MainActivity extends AppCompatActivity implements
                 Builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        sub[0] = input.getText().toString();
-                        Toast.makeText(getApplicationContext(),
-                                sub[0], Toast.LENGTH_SHORT).show();
+                        sub = input.getText().toString();
 
                         Calendar calendar = Calendar.getInstance();
                         year = calendar.get(Calendar.YEAR);
@@ -131,11 +127,13 @@ public class MainActivity extends AppCompatActivity implements
 
             setAlarm(yearFinal,mountFinal,dayFinal,hourFinal,minuteFinal);
 
-                String s = dayFinal +"/"+mountFinal+"/"+ yearFinal + "\n" +
+                String s = dayFinal +"/"+mountFinal+"/"+ yearFinal + "\n" + "เวลา" + " : " +
                         hourFinal+ ":" + minuteFinal + "\n"+
-                        "วิชาที่ต้องส่ง" + " : " + sub[0];
+                        "วิชาที่ต้องส่ง" + " : " + sub;
+
                 init();
                 addItem.add(s);
+
                 addAdapter.notifyDataSetChanged();
 
 
